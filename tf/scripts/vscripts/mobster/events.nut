@@ -81,10 +81,24 @@ function OnGameEvent_scorestats_accumulated_update(params)
 	nextbots.clear()
 }
 
+function OnGameEvent_player_death(params)
+{
+	if (!("nextbots" in getroottable()))
+		return
+
+	local victim = GetPlayerFromUserID(params.userid)
+	if (victim == null)
+		return
+	
+	local inflictor = EntIndexToHScript(params.inflictor_entindex)
+	if (inflictor != null && nextbots.find(inflictor) != null)
+		NetProps.SetPropEntity(victim, "m_hObserverTarget", null)
+}
+
 function OnScriptHook_OnTakeDamage(params)
 {
 	if (!("nextbots" in getroottable()))
-		return;
+		return
 	
 	local victim = params.const_entity
 	if (nextbots.find(victim) != null)

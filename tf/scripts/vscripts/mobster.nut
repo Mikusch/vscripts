@@ -19,12 +19,12 @@ if (!("ConstantNamingConvention" in ROOT))
 
 const MOBSTER_IDLE_SOUND = "Halloween.skeleton_laugh_medium"
 const MOBSTER_WEAPON_MODEL = "models/props_tuscany/tommygun_01.mdl"
-const MOBSTER_WEAPON_SHOOT_SOUND = "Weapon_ClassicSniperRifle.Single"
+const MOBSTER_WEAPON_SHOOT_SOUND = "Weapon_SMG.Single"
 const MOBSTER_WEAPON_TRACER_PARTICLE = "bullet_pistol_tracer01_red"
 const MOBSTER_WEAPON_MUZZLEFLASH_PARTICLE = "muzzle_smg"
-const MOBSTER_WEAPON_DAMAGE = 2.0
+const MOBSTER_WEAPON_DAMAGE = 3.0
 const MOBSTER_WEAPON_TIME_FIRE_DELAY = 0.1
-const MOBSTER_WEAPON_SPREAD = 0.05
+const MOBSTER_WEAPON_SPREAD = 0.1
 const MOBSTER_WEAPON_RANGE = 4000.0
 const MOBSTER_MAX_SPEED = 250.0
 const MOBSTER_FOV = 90.0
@@ -46,6 +46,7 @@ worldspawn <- Entities.FindByClassname(null, "worldspawn")
 PrecacheModel(MOBSTER_WEAPON_MODEL)
 PrecacheScriptSound(MOBSTER_WEAPON_SHOOT_SOUND)
 PrecacheScriptSound(MOBSTER_IDLE_SOUND)
+PrecacheEntityFromTable({ classname = "info_particle_system", effect_name = MOBSTER_WEAPON_TRACER_PARTICLE })
 
 if (!("nextbots" in getroottable()))
 	::nextbots <- []
